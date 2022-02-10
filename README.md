@@ -1,4 +1,4 @@
-# dramatispersonae
+# Dramatis Personae
 
 Experiments in the ML technique of NER (named entity recognition), used on journalism pieces. 
 
