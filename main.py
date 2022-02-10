@@ -1,7 +1,9 @@
 import spacy
 from spacy import displacy
 from collections import Counter
+from spacy.lang.en import English
 nlp = spacy.load("en_core_web_sm")
+nlp.add_pipe('sentencizer')
 
 __LABEL__ = 0
 __TYPE__ = 1
@@ -31,20 +33,28 @@ def is_same_name_in_longer_form(label, name):
     return False
 
 
-def get_first_mention(name):
-    # TODO: Extract first sentence mentioning the person, and add it to our dramatis personae.
+def get_first_mention(sentences, name):
+    for sentence in sentences:
+        if name in sentence:
+            return sentence
+
     # TODO: More advanced ML version will turn the sentence into a capsule bio.
-    pass
 
 def merge_later_mentions(names):
     return [x for x in names if not is_mentioned_elsewhere_in_longer_form(x, names)]     
 
-example = get_example()
-nlp_entries = nlp(example)
+def split_into_sentences(text):
+    doc = nlp(text)
+    return [str(sent).strip() for sent in doc.sents]
+
+article = get_example()
+nlp_entries = nlp(article)
 tuples = [(X.text, X.label_) for X in nlp_entries.ents]
 just_people = set(filter(is_person, tuples))
 flat_list = [entry[__LABEL__] for entry in just_people]
-print(flat_list)
-
 merged_last_names = merge_later_mentions(flat_list)
 print(merged_last_names)
+
+sentences = split_into_sentences(article)
+first_mentions = [get_first_mention(sentences, x) for x in merged_last_names]
+print(first_mentions)
