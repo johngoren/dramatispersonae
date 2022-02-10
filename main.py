@@ -34,6 +34,9 @@ def is_same_name_in_longer_form(label, name):
             return True
     return False
 
+def is_same_name_as_possessive(label, name):
+    # TODO
+    pass
 
 def get_first_mention(sentences, name):
     for sentence in sentences:
@@ -61,4 +64,3 @@ print(merged_last_names)
 
 sentences = split_into_sentences(article)
 first_mentions = [get_first_mention(sentences, x) for x in merged_last_names]
-print(first_mentions)
