@@ -8,6 +8,8 @@ nlp.add_pipe('sentencizer')
 __LABEL__ = 0
 __TYPE__ = 1
 
+aliases = {}
+
 def get_example():
     with open('./assets/talese.txt', 'r') as file:
         data = file.read()
@@ -31,6 +33,7 @@ def is_mentioned_elsewhere_in_longer_form(name, all_names):
 def is_same_name_in_longer_form(label, name):
     if label is not name:
         if name in label:
+            aliases[name] = label
             return True
     return False
 
@@ -65,4 +68,4 @@ print(merged_last_names)
 sentences = split_into_sentences(article)
 first_mentions = [get_first_mention(sentences, x) for x in merged_last_names]
 
-# TODO: Should build alias tables so that, for example, "Sinatra's" can take you to "Frank Sinatra"
+print(aliases)
