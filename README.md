@@ -1,4 +1,4 @@
-# Dramatis Personae
+# Dramatis Personae: Identify first mentions of people in articles
 
 Experiments in the ML technique of NER (named entity recognition), used on journalism pieces. 
 
