@@ -9,4 +9,4 @@ Testing this on the classic 1980 Jimmy Breslin piece, "Are You John Lennon?" fro
 You will be able to click on a name in a story and then see a cast of characters from the piece.
 
 
-![image](https://user-images.githubusercontent.com/748214/153408595-f758c18d-de3b-4aa0-98a6-430117562e2c.png)
+![image](https://user-images.githubusercontent.com/748214/153464506-dc44738c-b9c1-4219-8ae9-d29ea1a968af.png)
