@@ -1,5 +1,5 @@
 
-def get_example():
+def get_frank_sinatra_sample():
     with open('./assets/talese.txt', 'r') as file:
         data = file.read()
         return clean_article(data)
