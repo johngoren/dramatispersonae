@@ -64,3 +64,5 @@ print(merged_last_names)
 
 sentences = split_into_sentences(article)
 first_mentions = [get_first_mention(sentences, x) for x in merged_last_names]
+
+# TODO: Should build alias tables so that, for example, "Sinatra's" can take you to "Frank Sinatra"
