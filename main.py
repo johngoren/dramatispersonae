@@ -17,15 +17,15 @@ def is_person(entry):
         return True
     return False
 
-def is_mentioned_elsewhere_in_longer_form(entries, name):
-    for entry in entries:
-        label = entry[__LABEL__]
-        if label_is_same_name_in_longer_form(label, name):
+def is_mentioned_elsewhere_in_longer_form(name, all_names):
+    for x in all_names:
+        if is_same_name_in_longer_form(x, name):
             return True
     return False
 
-def label_is_same_name_in_longer_form(label, name):
+def is_same_name_in_longer_form(label, name):
     if label is not name:
+
         if name in label:
             return True
     return False
@@ -36,22 +36,15 @@ def get_first_mention(name):
     # TODO: More advanced ML version will turn the sentence into a capsule bio.
     pass
 
-def merge_equivalents(names):
-    # TODO: Merge items that contain other items, like last names duplicated by full names.
-    return set(filter(is_mentioned_elsewhere_in_longer_form, names))    
+def merge_later_mentions(names):
+    return [x for x in names if not is_mentioned_elsewhere_in_longer_form(x, names)]     
 
 example = get_example()
 nlp_entries = nlp(example)
 tuples = [(X.text, X.label_) for X in nlp_entries.ents]
 just_people = set(filter(is_person, tuples))
-merged_equivalents = [entry for entry in just_people if is_mentioned_elsewhere_in_longer_form(entry, just_people) is False]
+flat_list = [entry[__LABEL__] for entry in just_people]
+print(flat_list)
 
-# TODO: 
-print(merged_equivalents)
-
-# print([(X.text, X.label_) for X in nlp_entries.ents])
-
-# filtered_for_people = filter(is_person, nlp_entries)
-# people = list(filtered_for_people)
-# print(people)
-
+merged_last_names = merge_later_mentions(flat_list)
+print(merged_last_names)
