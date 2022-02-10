@@ -9,9 +9,12 @@ __LABEL__ = 0
 __TYPE__ = 1
 
 def get_example():
-    with open('./assets/breslin.txt', 'r') as file:
+    with open('./assets/talese.txt', 'r') as file:
         data = file.read()
-        return data
+        return clean_article(data)
+    
+def clean_article(article):
+    return article # TODO: Fix newlines
 
 def is_person(entry):
     type = entry[__TYPE__]
@@ -27,7 +30,6 @@ def is_mentioned_elsewhere_in_longer_form(name, all_names):
 
 def is_same_name_in_longer_form(label, name):
     if label is not name:
-
         if name in label:
             return True
     return False
@@ -36,7 +38,7 @@ def is_same_name_in_longer_form(label, name):
 def get_first_mention(sentences, name):
     for sentence in sentences:
         if name in sentence:
-            return sentence
+            return (name, sentence)
 
     # TODO: More advanced ML version will turn the sentence into a capsule bio.
 
@@ -46,6 +48,8 @@ def merge_later_mentions(names):
 def split_into_sentences(text):
     doc = nlp(text)
     return [str(sent).strip() for sent in doc.sents]
+
+
 
 article = get_example()
 nlp_entries = nlp(article)
