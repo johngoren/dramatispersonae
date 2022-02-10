@@ -20,7 +20,7 @@ nlp_entries = nlp(example)
 tuples = [(X.text, X.label_) for X in nlp_entries.ents]
 just_people = filter(is_person, tuples)
 
-print(list(just_people))
+print(set(just_people))
 
 # print([(X.text, X.label_) for X in nlp_entries.ents])
 
