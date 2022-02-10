@@ -1,6 +1,6 @@
 # Dramatis Personae: Identify first mentions of people in articles
 
-Experiments in the ML technique of NER (named entity recognition), used on journalism pieces. 
+Experiments in the NLP technique of NER (named entity recognition), used on journalism pieces. 
 
 Ever been halfway down a long feature article, seen a last name--"Smith leans back in his chair", and asked yourself, having forgotten who that is, "Wait, who is Smith again?" and had to scroll back up to Smith's first mention? This will be a browser plugin to solve that problem. It will build lists of first identifications of people in stories, and then let you refer to them while reading.
 
