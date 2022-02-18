@@ -50,3 +50,6 @@ def prep_article_for_parsing(article):
 
     # prepped = article.replace("'s", "")    # Possessives are tricky
     # return prepped
+
+def clip_mention(mention):
+    return mention[:100]

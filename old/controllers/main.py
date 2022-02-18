@@ -14,19 +14,19 @@ tuples = [(X.text, X.label_) for X in nlp_entries.ents]
 just_people = list(filter(is_person, tuples))
 flat_list = [entry[__LABEL__] for entry in just_people]
 merged_last_names = merge_later_mentions(flat_list)
-print("List of people")
+print("\n\nList of people")
 print(merged_last_names)
 
 sentences = split_into_sentences(article)
 first_mentions = [get_first_mention(sentences, x) for x in merged_last_names]
 
-print("Aliases")
+print("\n\nAliases")
 print(aliases)
 
 print("First mentions")
 
-#for x in first_mentions:
-#    name = x[0]
-#    mention = x[1]
-#    print(f'{name}: {mention}')
+for x in first_mentions:
+   name = x[0]
+   mention = x[1]
+   print(f'{name}: {mention}')
     

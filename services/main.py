@@ -7,7 +7,7 @@ from spacy.lang.en import English
 nlp = spacy.load("en_core_web_sm")
 nlp.add_pipe('sentencizer')
 import articles
-from parsing import is_person, merge_later_mentions, split_into_sentences, get_first_mention, aliases, prep_article_for_parsing
+from parsing import is_person, merge_later_mentions, split_into_sentences, get_first_mention, aliases, prep_article_for_parsing, clip_mention
 from constants import __LABEL__, __TYPE__
 
 article = articles.get_frank_sinatra_sample()
@@ -30,6 +30,7 @@ def output_first_mentions():
     for x in first_mentions:
         name = x[0]
         mention = x[1]
-        print(f'{name}: {mention}')
+        clipped = clip_mention(mention)
+        print(f'{name}: {clipped}')
     
-# output_first_mentions()
+output_first_mentions()
