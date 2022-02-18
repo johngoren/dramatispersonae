@@ -5,4 +5,4 @@ def get_frank_sinatra_sample():
         return clean_article(data)
     
 def clean_article(article):
-    return article # TODO: Fix newlines
+    return article.replace("'s", "") # TODO: Fix newlines

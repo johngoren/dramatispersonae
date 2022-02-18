@@ -8,7 +8,7 @@ import articles
 from textUtils import is_person, merge_later_mentions, split_into_sentences, get_first_mention, aliases
 from constants import __LABEL__, __TYPE__
 
-article = articles.get_joan_didion_sample()
+article = articles.get_frank_sinatra_sample().replace(",","")
 nlp_entries = nlp(article)
 tuples = [(X.text, X.label_) for X in nlp_entries.ents]
 just_people = list(filter(is_person, tuples))
@@ -24,8 +24,9 @@ print("Aliases")
 print(aliases)
 
 print("First mentions")
-for x in first_mentions:
-    name = x[0]
-    mention = x[1]
-    print(f'{name}: {mention}')
+
+#for x in first_mentions:
+#    name = x[0]
+#    mention = x[1]
+#    print(f'{name}: {mention}')
     

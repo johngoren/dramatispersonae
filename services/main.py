@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import spacy
 from spacy import displacy
 from collections import Counter
@@ -5,11 +7,12 @@ from spacy.lang.en import English
 nlp = spacy.load("en_core_web_sm")
 nlp.add_pipe('sentencizer')
 import articles
-from textUtils import is_person, merge_later_mentions, split_into_sentences, get_first_mention, aliases
+from parsing import is_person, merge_later_mentions, split_into_sentences, get_first_mention, aliases, prep_article_for_parsing
 from constants import __LABEL__, __TYPE__
 
 article = articles.get_frank_sinatra_sample()
-nlp_entries = nlp(article)
+article_clean = prep_article_for_parsing(article)
+nlp_entries = nlp(article_clean)
 tuples = [(X.text, X.label_) for X in nlp_entries.ents]
 just_people = list(filter(is_person, tuples))
 flat_list = [entry[__LABEL__] for entry in just_people]
@@ -23,9 +26,10 @@ first_mentions = [get_first_mention(sentences, x) for x in merged_last_names]
 print("Aliases")
 print(aliases)
 
-print("First mentions")
-for x in first_mentions:
-    name = x[0]
-    mention = x[1]
-    print(f'{name}: {mention}')
+def output_first_mentions():
+    for x in first_mentions:
+        name = x[0]
+        mention = x[1]
+        print(f'{name}: {mention}')
     
+# output_first_mentions()

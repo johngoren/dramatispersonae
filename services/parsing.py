@@ -44,3 +44,9 @@ def merge_later_mentions(names):
 def split_into_sentences(text):
     doc = nlp(text)
     return [str(sent).strip() for sent in doc.sents]
+
+def prep_article_for_parsing(article):
+    return article
+
+    # prepped = article.replace("'s", "")    # Possessives are tricky
+    # return prepped
